@@ -1,0 +1,21 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.env
+
+# data
+data/ml-latest-small/
+data/*.zip
+
+# outputs
+outputs/*.pt
+outputs/*.csv
+outputs/*.json
+outputs/*.log
+
+# IDE
+.vscode/
+.idea/
+.DS_Store
