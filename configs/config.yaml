@@ -1,0 +1,36 @@
+# BaNANN configuration
+
+data:
+  data_dir: "data/ml-latest-small"
+  ratings_file: "ratings.csv"
+  movies_file: "movies.csv"
+  min_user_interactions: 5      # filter users with too few interactions
+  min_item_interactions: 5
+
+model:
+  embedding_dim: 64
+  num_layers: 2
+  num_heads: 4                  # GAT attention heads
+  dropout: 0.2
+
+train:
+  epochs: 1000
+  batch_size: 2048
+  learning_rate: 0.001
+  weight_decay: 1.0e-5
+  alpha: 1.0                    # weight for BPR loss (accuracy)
+  beta: 0.05                     # weight for novelty loss
+  temperature: 0.2              # InfoNCE temperature
+  seed: 42
+  device: "cuda"                # "cuda" or "cpu"
+  num_negatives: 99              # negative samples per positive in BPR
+
+eval:
+  num_negative_eval: 99         # 99 negs + 1 pos = 100 candidates
+  ks: [5, 10, 20, 50]
+  long_tail_pct: 0.10           # bottom 10% items = long-tail
+
+output:
+  output_dir: "outputs"
+  checkpoint_name: "banann_best.pt"
+  results_file: "results.csv"
